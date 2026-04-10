@@ -1,0 +1,13 @@
+{
+  "source": "RunPod A100 3-seed run, seed 42",
+  "model": "resnet18_nobn",
+  "dataset": "cifar100",
+  "final_pc": 0.720,
+  "final_chi_max": 6.287,
+  "final_test_acc": 0.6055,
+  "final_gen_gap": 0.3941,
+  "pc_stable": false,
+  "pc_drift": "0.84 -> 0.72",
+  "pc_trajectory": [0.0, 0.84, 0.84, 0.8, 0.8, 0.76, 0.76, 0.72, 0.76, 0.72, 0.72, 0.72],
+  "chi_trajectory": [-0.0, 1.46, 3.01, 4.51, 5.04, 5.15, 5.32, 5.51, 6.11, 6.08, 6.43, 6.29]
+}
