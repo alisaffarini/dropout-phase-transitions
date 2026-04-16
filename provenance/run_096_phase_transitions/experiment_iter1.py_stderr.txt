@@ -1,0 +1,33 @@
+
+  0%|          | 0.00/9.91M [00:00<?, ?B/s]
+  9%|▉         | 885k/9.91M [00:00<00:01, 8.73MB/s]
+ 21%|██▏       | 2.13M/9.91M [00:00<00:00, 10.0MB/s]
+ 32%|███▏      | 3.15M/9.91M [00:00<00:00, 8.29MB/s]
+ 47%|████▋     | 4.62M/9.91M [00:00<00:00, 10.4MB/s]
+ 64%|██████▍   | 6.32M/9.91M [00:00<00:00, 12.6MB/s]
+ 82%|████████▏ | 8.16M/9.91M [00:00<00:00, 14.4MB/s]
+ 99%|█████████▉| 9.80M/9.91M [00:00<00:00, 14.8MB/s]
+100%|██████████| 9.91M/9.91M [00:00<00:00, 12.8MB/s]
+
+  0%|          | 0.00/28.9k [00:00<?, ?B/s]
+100%|██████████| 28.9k/28.9k [00:00<00:00, 1.42MB/s]
+
+  0%|          | 0.00/1.65M [00:00<?, ?B/s]
+ 36%|███▌      | 590k/1.65M [00:00<00:00, 3.43MB/s]
+100%|██████████| 1.65M/1.65M [00:00<00:00, 7.00MB/s]
+
+  0%|          | 0.00/4.54k [00:00<?, ?B/s]
+100%|██████████| 4.54k/4.54k [00:00<00:00, 23.5MB/s]
+Traceback (most recent call last):
+  File "/Users/alisaffarini/burn-tokens/research/runs/run_096_phase_transitions/experiment_iter1.py", line 445, in <module>
+    run_experiment()
+  File "/Users/alisaffarini/burn-tokens/research/runs/run_096_phase_transitions/experiment_iter1.py", line 382, in run_experiment
+    result = train_with_monitoring(seed)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alisaffarini/burn-tokens/research/runs/run_096_phase_transitions/experiment_iter1.py", line 306, in train_with_monitoring
+    gci, coherence_matrix = compute_gradient_coherence_index(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alisaffarini/burn-tokens/research/runs/run_096_phase_transitions/experiment_iter1.py", line 144, in compute_gradient_coherence_index
+    coherence = F.cosine_similarity(g_i, g_j, dim=0).item()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (144) must match the size of tensor b (4608) at non-singleton dimension 0

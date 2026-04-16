@@ -1,0 +1,102 @@
+Running metric sanity checks...
+METRIC_SANITY_PASSED
+Starting Gradient Coherence Analysis Experiment
+============================================================
+
+1. Sanity check with first seed...
+Seed 0, Model cnn: Training...
+  Epoch 0: loss=0.888, val_acc=0.884
+  Epoch 1: loss=0.272, val_acc=0.900
+  Epoch 2: loss=0.188, val_acc=0.916
+Sanity check passed: acc=0.908, gci=0.073
+
+2. Main experiment (CNN with GCI)...
+Seed 1, Model cnn: Training...
+  Epoch 0: loss=0.987, val_acc=0.853
+  Epoch 1: loss=0.329, val_acc=0.919
+  Epoch 2: loss=0.209, val_acc=0.912
+  Seed 1 complete: acc=0.923
+Seed 2, Model cnn: Training...
+  Epoch 0: loss=1.225, val_acc=0.834
+  Epoch 1: loss=0.389, val_acc=0.897
+  Epoch 2: loss=0.240, val_acc=0.941
+  Seed 2 complete: acc=0.922
+Seed 3, Model cnn: Training...
+  Epoch 0: loss=1.257, val_acc=0.841
+  Epoch 1: loss=0.397, val_acc=0.869
+  Epoch 2: loss=0.273, val_acc=0.916
+  Seed 3 complete: acc=0.925
+Seed 4, Model cnn: Training...
+  Epoch 0: loss=1.133, val_acc=0.887
+  Epoch 1: loss=0.372, val_acc=0.947
+  Epoch 2: loss=0.242, val_acc=0.959
+  Converged at epoch 2
+  Seed 4 complete: acc=0.925
+Seed 5, Model cnn: Training...
+  Epoch 0: loss=1.074, val_acc=0.891
+  Epoch 1: loss=0.303, val_acc=0.916
+  Epoch 2: loss=0.195, val_acc=0.909
+  Seed 5 complete: acc=0.914
+Seed 6, Model cnn: Training...
+  Epoch 0: loss=0.953, val_acc=0.891
+  Epoch 1: loss=0.327, val_acc=0.925
+  Epoch 2: loss=0.229, val_acc=0.925
+  Seed 6 complete: acc=0.914
+Seed 7, Model cnn: Training...
+  Epoch 0: loss=1.079, val_acc=0.853
+  Epoch 1: loss=0.332, val_acc=0.919
+  Epoch 2: loss=0.200, val_acc=0.931
+  Seed 7 complete: acc=0.928
+Seed 8, Model cnn: Training...
+  Epoch 0: loss=0.907, val_acc=0.922
+  Epoch 1: loss=0.297, val_acc=0.919
+  Epoch 2: loss=0.197, val_acc=0.953
+  Converged at epoch 2
+  Seed 8 complete: acc=0.938
+Seed 9, Model cnn: Training...
+  Epoch 0: loss=1.135, val_acc=0.863
+  Epoch 1: loss=0.339, val_acc=0.894
+  Epoch 2: loss=0.228, val_acc=0.916
+  Seed 9 complete: acc=0.931
+
+3. Baseline (Simple MLP)...
+Seed 0, Model baseline: Training...
+  Epoch 0: loss=0.747, val_acc=0.881
+  Epoch 1: loss=0.318, val_acc=0.887
+  Epoch 2: loss=0.238, val_acc=0.909
+  Baseline seed 0: acc=0.900
+Seed 1, Model baseline: Training...
+  Epoch 0: loss=0.741, val_acc=0.869
+  Epoch 1: loss=0.295, val_acc=0.891
+  Epoch 2: loss=0.222, val_acc=0.887
+  Baseline seed 1: acc=0.892
+Seed 2, Model baseline: Training...
+  Epoch 0: loss=0.715, val_acc=0.859
+  Epoch 1: loss=0.324, val_acc=0.884
+  Epoch 2: loss=0.248, val_acc=0.900
+  Baseline seed 2: acc=0.897
+
+4. Ablation (Less data)...
+Seed 0, Model cnn: Training...
+  Epoch 0: loss=1.725, val_acc=0.694
+  Epoch 1: loss=0.610, val_acc=0.850
+  Epoch 2: loss=0.378, val_acc=0.909
+Seed 1, Model cnn: Training...
+  Epoch 0: loss=1.706, val_acc=0.747
+  Epoch 1: loss=0.620, val_acc=0.825
+  Epoch 2: loss=0.403, val_acc=0.881
+Seed 2, Model cnn: Training...
+  Epoch 0: loss=1.710, val_acc=0.684
+  Epoch 1: loss=0.640, val_acc=0.741
+  Epoch 2: loss=0.421, val_acc=0.841
+
+============================================================
+SUMMARY:
+CNN: 0.923 ± 0.008
+MLP: 0.896 ± 0.003
+Collapse rate: 0%
+p-value (CNN vs MLP): 0.0005
+NO_SIGNAL: No clear relationship found
+
+RESULTS: {"main_results": {"stats": {"mean_acc": 0.9228125, "std_acc": 0.008391075988810968, "collapse_rate": 0.0, "mean_collapse_mag": 0.0, "n_samples": 10}, "per_seed": [{"seed": 0, "acc": 0.9078125, "collapse": false}, {"seed": 1, "acc": 0.9234375, "collapse": false}, {"seed": 2, "acc": 0.921875, "collapse": false}, {"seed": 3, "acc": 0.925, "collapse": false}, {"seed": 4, "acc": 0.925, "collapse": false}, {"seed": 5, "acc": 0.9140625, "collapse": false}, {"seed": 6, "acc": 0.9140625, "collapse": false}, {"seed": 7, "acc": 0.928125, "collapse": false}, {"seed": 8, "acc": 0.9375, "collapse": false}, {"seed": 9, "acc": 0.93125, "collapse": false}]}, "baselines": {"random": {"mean_acc": 0.1}, "simple_mlp": {"mean_acc": 0.8963541666666667, "std_acc": 0.003210632293213006, "collapse_rate": 0.0, "mean_collapse_mag": 0.0, "n_samples": 3}}, "ablations": {"less_data": {"mean_acc": 0.8645833333333334, "std_acc": 0.021700694433332994, "collapse_rate": 0.0, "mean_collapse_mag": 0.0, "n_samples": 3}}, "statistical_tests": {"cnn_vs_mlp": {"t": 4.916957044795479, "p": 0.00045907487661685253}, "cnn_vs_random": {"diff": 0.8228125000000001}, "collapse_correlation": {"r": 0.0, "p": 1.0}}, "convergence_status": "NOT_CONVERGED"}
+DRY_RUN_OK: Full pipeline validated (train → analyze → output)

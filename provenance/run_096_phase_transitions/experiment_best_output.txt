@@ -1,0 +1,33 @@
+Running metric sanity checks...
+METRIC_SANITY_PASSED
+Starting Gradient Coherence Analysis Experiment (Feasibility Probe)
+============================================================
+
+Seed 0: Starting training...
+Epoch 0: Loss=1.1302, Val=0.880, GCI=0.000, Time=1.1s
+Epoch 1: Loss=0.2980, Val=0.918, GCI=0.000, Time=2.0s
+Epoch 2: Loss=0.2036, Val=0.935, GCI=0.000, Time=2.9s
+Epoch 3: Loss=0.1581, Val=0.955, GCI=0.000, Time=4.0s
+CONVERGED: Patience reached or high accuracy
+Training completed in 4.3s
+
+Seed 1: Starting training...
+Epoch 0: Loss=1.1021, Val=0.827, GCI=0.000, Time=0.9s
+Epoch 1: Loss=0.3596, Val=0.900, GCI=0.000, Time=1.9s
+Epoch 2: Loss=0.2206, Val=0.928, GCI=0.000, Time=2.8s
+Epoch 3: Loss=0.1587, Val=0.953, GCI=0.000, Time=3.7s
+CONVERGED: Patience reached or high accuracy
+Training completed in 4.1s
+
+Seed 2: Starting training...
+Epoch 0: Loss=1.2543, Val=0.873, GCI=0.000, Time=1.0s
+Epoch 1: Loss=0.3563, Val=0.937, GCI=0.000, Time=1.9s
+Epoch 2: Loss=0.2081, Val=0.942, GCI=0.000, Time=3.0s
+Epoch 3: Loss=0.1707, Val=0.960, GCI=0.000, Time=4.0s
+CONVERGED: Patience reached or high accuracy
+Training completed in 4.3s
+NO_SIGNAL: Coherence collapse rare (0% of runs)
+
+Total experiment time: 12.8s
+
+RESULTS: {"per_seed_results": [{"seed": 0, "test_acc": 0.9337890625, "best_val_acc": 0.955, "collapse_detected": false, "collapse_epoch": -1, "collapse_magnitude": 0.0, "final_gci": 0.0, "converged": true, "training_time": 4.3104588985443115}, {"seed": 1, "test_acc": 0.94609375, "best_val_acc": 0.9533333333333334, "collapse_detected": false, "collapse_epoch": -1, "collapse_magnitude": 0.0, "final_gci": 0.0, "converged": true, "training_time": 4.072803974151611}, {"seed": 2, "test_acc": 0.9326171875, "best_val_acc": 0.96, "collapse_detected": false, "collapse_epoch": -1, "collapse_magnitude": 0.0, "final_gci": 0.0, "converged": true, "training_time": 4.3157031536102295}], "mean_test_acc": 0.9375, "std_test_acc": 0.006095502552471546, "collapse_detection_rate": 0.0, "mean_collapse_magnitude": 0.0, "convergence_status": true, "signal_detected": false, "signal_description": "Coherence collapse rare (0% of runs)", "total_experiment_time": 12.803016901016235}

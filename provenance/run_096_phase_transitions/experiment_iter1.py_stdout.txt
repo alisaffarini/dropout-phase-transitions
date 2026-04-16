@@ -1,0 +1,6 @@
+Running metric sanity checks...
+METRIC_SANITY_PASSED
+Starting Gradient Coherence Analysis Experiment
+============================================================
+
+Seed 0: Starting training...

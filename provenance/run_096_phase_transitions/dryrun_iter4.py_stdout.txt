@@ -1,0 +1,38 @@
+Running metric sanity checks...
+METRIC_SANITY_PASSED
+Gradient Coherence Analysis: Fast Publication Experiment
+============================================================
+
+1. Sanity check...
+✓ Sanity: acc=0.919, gci=0.076
+
+2. Main experiment (CNN)...
+  Seed 1: acc=0.923
+  Seed 2: acc=0.884
+  Seed 3: acc=0.887
+  Seed 4: acc=0.887
+  Seed 5: acc=0.902
+  Seed 6: acc=0.911
+  Seed 7: acc=0.902
+  Seed 8: acc=0.906
+  Seed 9: acc=0.908
+
+3. Baselines...
+  MLP 0: acc=0.887
+  MLP 1: acc=0.887
+  MLP 2: acc=0.887
+  MLP 3: acc=0.884
+  MLP 4: acc=0.887
+
+4. Ablation (shallow)...
+
+============================================================
+SUMMARY:
+Runtime: 28.0s
+CNN: 0.903 ± 0.013 (n=10)
+MLP: 0.887 ± 0.001 (n=5)
+Collapse rate: 10%
+NO_SIGNAL: No clear gradient coherence pattern
+
+RESULTS: {"metadata": {"runtime_seconds": 27.961580991744995, "n_seeds": {"main": 10, "mlp": 5, "random": 3, "shallow": 3}}, "statistics": {"main": {"n": 10, "mean_acc": 0.90296875, "std_acc": 0.012625348076884854, "collapse_rate": 0.1, "converged": false}, "mlp": {"n": 5, "mean_acc": 0.8868749999999999, "std_acc": 0.0012499999999999734, "collapse_rate": 0.2, "converged": false}, "random": {"n": 3, "mean_acc": 0.10000000000000002, "std_acc": 1.3877787807814457e-17, "collapse_rate": 0.0, "converged": true}, "shallow": {"n": 3, "mean_acc": 0.8942708333333332, "std_acc": 0.00990952999502107, "collapse_rate": 0.0, "converged": false}}, "per_seed_results": {"main": [{"seed": 0, "acc": 0.91875, "collapse": false}, {"seed": 1, "acc": 0.9234375, "collapse": false}, {"seed": 2, "acc": 0.884375, "collapse": true}, {"seed": 3, "acc": 0.8875, "collapse": false}, {"seed": 4, "acc": 0.8875, "collapse": false}, {"seed": 5, "acc": 0.9015625, "collapse": false}, {"seed": 6, "acc": 0.9109375, "collapse": false}, {"seed": 7, "acc": 0.9015625, "collapse": false}, {"seed": 8, "acc": 0.90625, "collapse": false}, {"seed": 9, "acc": 0.9078125, "collapse": false}]}, "significance_tests": {"cnn_vs_mlp": {"t": 2.647056764753251, "p": 0.020124105944097994}, "collapse_correlation": {"r": 0.0, "p": 1.0, "n": 1}}, "convergence_status": "NOT_CONVERGED"}
+DRY_RUN_OK: Full pipeline validated (train → analyze → output)
