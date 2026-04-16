@@ -118,8 +118,8 @@ This procedure is repeated at regular training checkpoints (every 5 epochs) to p
 We study four architectures spanning a range of capacities:
 
 \begin{itemize}
-    \item \textbf{MLP}: A 3-hidden-layer fully connected network (512--256--128 units) with ReLU activations. Represents the minimal-capacity baseline.
-    \item \textbf{SimpleCNN}: A 4-layer convolutional network with 32--64--128--256 filters, max pooling, and a single fully connected layer. Intermediate capacity.
+    \item \textbf{MLP}: A 2-hidden-layer fully connected network (1024--512 units) with ReLU activations. Represents the minimal-capacity baseline.
+    \item \textbf{SimpleCNN}: A 4-layer convolutional network with 64--64--128--128 filters, max pooling, and a single fully connected layer. Intermediate capacity.
     \item \textbf{ResNet-18 (no batch norm)}: Standard ResNet-18 architecture \citep{he2016deep} with batch normalization removed to prevent interference with the dropout perturbation analysis.
     \item \textbf{VGG-11 (no dropout)}: VGG-11 \citep{simonyan2014very} with its native dropout layers removed, again without batch normalization.
 \end{itemize}
@@ -158,6 +158,8 @@ The most striking feature is the qualitative difference between architectures. \
         VGG-11         & CIFAR-100 & ---        & N/A          & 0.0  & 0.5\%   & --- \\
         \bottomrule
     \end{tabular}
+    \vspace{0.3em}
+    \small{Note: MLP on CIFAR-100 is omitted due to computational constraints (the combination did not converge within the allocated budget). VGG-11 on CIFAR-100 failed to train above chance (0.5\%), so phase transition metrics are undefined.}
 \end{table}
 
 \subsection{$\chi_{\max}$ Scales with Model Depth}
