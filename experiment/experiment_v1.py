@@ -391,8 +391,12 @@ def train_and_measure(model_name, dataset_name):
             out = model(x, drop_rate=0.0)  # NO dropout during training
             loss = criterion(out, y)
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
             optimizer.step()
             running_loss += loss.item()
+            if torch.isnan(loss) or torch.isinf(loss):
+                print(f"  [WARNING] NaN/Inf loss at epoch {epoch}, breaking early")
+                return phase_data  # return what we have so far
             correct += (out.argmax(1) == y).sum().item()
             total += y.size(0)
         scheduler.step()
