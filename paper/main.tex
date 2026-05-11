@@ -10,7 +10,9 @@
 \usepackage{amsmath,amssymb}
 
 % Suppress the page-1 notice footer entirely (no venue/header text).
+\makeatletter
 \renewcommand{\Notice@String}{}
+\makeatother
 
 \graphicspath{{../figures/}}
 
@@ -179,9 +181,12 @@ The most striking feature is the qualitative difference between architectures. \
 
 A consistent finding across CIFAR-10 experiments is that the peak susceptibility $\chi_{\max}$ increases monotonically with model depth (mean $\pm$ std across 2 seeds):
 
-\begin{equation}
-    \chi_{\max}^{\text{MLP}} = 1.4 \pm 0.0 \;\;<\;\; \chi_{\max}^{\text{CNN}} = 4.4 \pm 0.2 \;\;<\;\; \chi_{\max}^{\text{VGG}} = 7.0 \pm 0.8 \;\;\approx\;\; \chi_{\max}^{\text{ResNet}} = 7.2 \pm 0.3
-\end{equation}
+\begin{align*}
+    \chi_{\max}^{\text{MLP}}    &= 1.4 \pm 0.0 \\
+    \chi_{\max}^{\text{CNN}}    &= 4.4 \pm 0.2 \\
+    \chi_{\max}^{\text{VGG}}    &= 7.0 \pm 0.8 \\
+    \chi_{\max}^{\text{ResNet}} &= 7.2 \pm 0.3
+\end{align*}
 
 This monotonic scaling has a natural interpretation: deeper networks partition their representation space more sharply, creating a steeper boundary between the functional regime (low dropout) and the non-functional regime (high dropout). The dropout phase transition is a probe of this partitioning---a network that distributes information across many layers requires a critical fraction of neurons to maintain coherent predictions, and the transition from coherent to incoherent happens abruptly.
 
