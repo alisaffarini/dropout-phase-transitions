@@ -172,9 +172,11 @@ The most striking feature is the qualitative difference between architectures. \
         VGG-11         & CIFAR-10  & $0.80 \pm 0.00$ & \textbf{Yes} & $7.0 \pm 0.8$  & $89.5 \pm 0.1\%$  & $10.5 \pm 0.1\%$ \\
         VGG-11         & CIFAR-100 & ---              & N/A          & $0.0 \pm 0.0$  & $0.6 \pm 0.1\%$   & --- \\
         \bottomrule
-    \end{tabular}
+    \end{tabular}\par
     \vspace{0.3em}
-    \small{Note: All values are mean $\pm$ std across seeds 42 and 43. MLP on CIFAR-100 achieves only 31.1\% test accuracy with $p_c = 0.00$, indicating the model's capacity is insufficient for the task and no meaningful phase transition exists. VGG-11 on CIFAR-100 failed to train above chance (${\sim}0.6\%$), so phase transition metrics are undefined.}
+    \begin{minipage}{0.92\textwidth}
+    \small Note: All values are mean $\pm$ std across seeds 42 and 43. MLP on CIFAR-100 achieves only 31.1\% test accuracy with $p_c = 0.00$, indicating the model's capacity is insufficient for the task and no meaningful phase transition exists. VGG-11 on CIFAR-100 failed to train above chance (${\sim}0.6\%$), so phase transition metrics are undefined.
+    \end{minipage}
 \end{table*}
 
 \subsection{$\chi_{\max}$ Scales with Model Depth}
