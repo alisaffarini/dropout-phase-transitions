@@ -1,24 +1,34 @@
 \documentclass{article}
-\usepackage{iclr2025_conference,times}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs}
+
+\usepackage{microtype}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage[preprint]{icml2026}
+\usepackage{amsmath,amssymb}
+
+% Suppress the page-1 notice footer entirely (no venue/header text).
+\renewcommand{\Notice@String}{}
 
 \graphicspath{{../figures/}}
 
-\iclrfinalcopy
-
-\title{Dropout as a Phase Transition: Critical Points in\\Neural Network Regularization Reveal\\Model--Task Fit Regimes}
-\author{Ali Saffarini \\
-Harvard University \\
-\texttt{alisaffarini@college.harvard.edu}}
-
+\icmltitlerunning{Dropout as a Phase Transition}
 
 \begin{document}
-\maketitle
+
+\twocolumn[
+\icmltitle{Dropout as a Phase Transition: Critical Points in\\Neural Network Regularization Reveal Model--Task Fit Regimes}
+\begin{icmlauthorlist}
+\icmlauthor{Ali Saffarini}{harvard}
+\end{icmlauthorlist}
+\icmlaffiliation{harvard}{Harvard University}
+\icmlcorrespondingauthor{Ali Saffarini}{alisaffarini@college.harvard.edu}
+\vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
 
 \begin{abstract}
 We study dropout regularization through the lens of statistical physics, treating the dropout rate as a control parameter analogous to temperature in thermodynamic systems. By sweeping dropout rates from 0 to 0.96 and measuring the prediction entropy of neural networks via Monte Carlo sampling, we construct two-dimensional phase diagrams (training epoch $\times$ dropout rate) that reveal sharp phase transitions between an ordered phase (confident predictions) and a disordered phase (random predictions). We define the critical dropout rate $p_c$ (where the susceptibility $\chi = dH/dp$ is maximized) and the peak susceptibility $\chi_{\max}$ as diagnostic quantities. Experiments across four architectures (MLP, SimpleCNN, ResNet-18, VGG-11) and two datasets (CIFAR-10, CIFAR-100), each replicated over two random seeds, reveal three distinct model--task fit regimes: (1)~\textbf{Good fit}: stable $p_c$ and high $\chi_{\max}$ (ResNet-18 on CIFAR-10: $p_c = 0.84$, $\chi_{\max} = 7.2 \pm 0.3$); (2)~\textbf{Overfitting}: $p_c$ drifts downward during training as the generalization gap grows (ResNet-18 on CIFAR-100: $p_c$ drops from $0.84 \to 0.72$, $\chi_{\max} = 6.1 \pm 0.2$, gen.\ gap $= 39.3 \pm 0.1\%$); (3)~\textbf{Underfitting}: artificially high $p_c$ because the model fails to utilize its capacity (SimpleCNN on CIFAR-100: $p_c = 0.92$, yet test accuracy is only $65.5 \pm 1.8\%$). Furthermore, $\chi_{\max}$ scales monotonically with model depth---from ${\sim}1.4$ (MLP) to ${\sim}4.4$ (CNN) to ${\sim}7.0$--$7.2$ (ResNet/VGG)---indicating that deeper architectures exhibit sharper phase transitions. All reported values are means $\pm$ standard deviations across seeds; the low cross-seed variance confirms the reproducibility of the phase transition phenomena. These results establish dropout phase diagrams as a practical, training-free diagnostic tool for characterizing model--task interactions beyond standard accuracy metrics.\footnote{Code and data: \url{https://github.com/alisaffarini/dropout-phase-transitions}}
@@ -108,7 +118,7 @@ Figure~\ref{fig:phase_diagrams} shows the phase diagrams for all four architectu
 
 The most striking feature is the qualitative difference between architectures. \textbf{ResNet-18 and VGG-11 on CIFAR-10} exhibit textbook phase transitions: a sharp boundary separates a dark region (low entropy, confident predictions) from a bright region (high entropy, random predictions), with a narrow, intense susceptibility peak at $p_c \approx 0.80$--$0.84$ and $\chi_{\max} \approx 7.0$--$7.2$ (mean across seeds). In contrast, the \textbf{MLP on CIFAR-10} shows only a smooth crossover---the entropy gradient is gradual, the susceptibility peak is broad and low ($\chi_{\max} = 1.4 \pm 0.0$), and $p_c$ is highly variable across seeds ($0.32 \pm 0.11$), drifting during training.
 
-\begin{figure}[t]
+\begin{figure*}[t]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -141,9 +151,9 @@ The most striking feature is the qualitative difference between architectures. \
     \end{subfigure}
     \caption{Dropout phase diagrams for all four architectures on CIFAR-10. Each panel shows prediction entropy $H(p)$ as a heatmap over (training epoch $\times$ dropout rate), with the critical dropout rate $p_c$ traced as a curve. Deeper architectures exhibit sharper phase transitions (higher $\chi_{\max}$) and more stable critical points.}
     \label{fig:phase_diagrams}
-\end{figure}
+\end{figure*}
 
-\begin{table}[t]
+\begin{table*}[t]
     \centering
     \caption{Summary of phase transition metrics across all model--dataset combinations (mean $\pm$ std over 2 seeds). $p_c$ denotes the final critical dropout rate, $\chi_{\max}$ the peak susceptibility, and $\Delta_{\text{gen}}$ the final generalization gap (train accuracy $-$ test accuracy). Models are ordered by depth.}
     \label{tab:summary}
@@ -163,7 +173,7 @@ The most striking feature is the qualitative difference between architectures. \
     \end{tabular}
     \vspace{0.3em}
     \small{Note: All values are mean $\pm$ std across seeds 42 and 43. MLP on CIFAR-100 achieves only 31.1\% test accuracy with $p_c = 0.00$, indicating the model's capacity is insufficient for the task and no meaningful phase transition exists. VGG-11 on CIFAR-100 failed to train above chance (${\sim}0.6\%$), so phase transition metrics are undefined.}
-\end{table}
+\end{table*}
 
 \subsection{$\chi_{\max}$ Scales with Model Depth}
 
@@ -175,7 +185,7 @@ A consistent finding across CIFAR-10 experiments is that the peak susceptibility
 
 This monotonic scaling has a natural interpretation: deeper networks partition their representation space more sharply, creating a steeper boundary between the functional regime (low dropout) and the non-functional regime (high dropout). The dropout phase transition is a probe of this partitioning---a network that distributes information across many layers requires a critical fraction of neurons to maintain coherent predictions, and the transition from coherent to incoherent happens abruptly.
 
-\begin{figure}[t]
+\begin{figure*}[t]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -192,7 +202,7 @@ This monotonic scaling has a natural interpretation: deeper networks partition t
     \end{subfigure}
     \caption{Entropy curves $H(p)$ as a function of dropout rate at the final training epoch, comparing the sharpest (ResNet-18, $\chi_{\max} = 7.2 \pm 0.3$) and smoothest (MLP, $\chi_{\max} = 1.4 \pm 0.0$) transitions on CIFAR-10. The steepness of the curve corresponds directly to $\chi_{\max}$, which scales monotonically with model depth. Values are consistent across seeds.}
     \label{fig:entropy_curves}
-\end{figure}
+\end{figure*}
 
 The near-equivalence of ResNet-18 and VGG-11 ($\chi_{\max} \approx 7.0$--$7.2$) despite very different architectures suggests that depth, rather than specific architectural choices, is the primary determinant of phase transition sharpness for networks of comparable total capacity. Notably, VGG-11 exhibits higher cross-seed variance in $\chi_{\max}$ ($\pm 0.8$) compared to ResNet-18 ($\pm 0.3$), suggesting that the uniform sequential architecture of VGG is more sensitive to initialization than the residual architecture.
 
@@ -212,7 +222,7 @@ SimpleCNN on CIFAR-100 has $p_c = 0.92 \pm 0.00$---even \emph{higher} than its C
 
 The key insight is that $p_c$ and $\chi_{\max}$ alone are not diagnostic---it is their \emph{dynamics} and \emph{relationship to the task} that reveal model--task fit. A stable, high $p_c$ with high $\chi_{\max}$ indicates good fit; a drifting $p_c$ indicates overfitting; an anomalously high $p_c$ with poor accuracy indicates underfitting.
 
-\begin{figure}[t]
+\begin{figure*}[t]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -229,7 +239,7 @@ The key insight is that $p_c$ and $\chi_{\max}$ alone are not diagnostic---it is
     \end{subfigure}
     \caption{CIFAR-100 phase diagrams illustrating the underfitting regime and complete phase collapse. Compare with Figure~\ref{fig:phase_diagrams} (CIFAR-10): the same architectures exhibit qualitatively different phase structure when the task exceeds their effective capacity.}
     \label{fig:cifar100_diagrams}
-\end{figure}
+\end{figure*}
 
 \subsection{Cross-Architecture, Same-Task Comparison}
 
@@ -246,7 +256,7 @@ On CIFAR-10, where all models achieve reasonable accuracy, the phase diagram cle
 
 The comparison of ResNet-18 across CIFAR-10 and CIFAR-100 provides the clearest evidence that phase diagrams capture model--task interactions:
 
-\begin{table}[t]
+\begin{table*}[t]
     \centering
     \caption{ResNet-18 phase transition metrics on CIFAR-10 vs.\ CIFAR-100 (mean $\pm$ std over 2 seeds). Same architecture, different task: the harder task causes the phase transition to soften and the critical point to drift. Both effects are reproduced across seeds with low variance.}
     \label{tab:resnet_comparison}
@@ -258,9 +268,9 @@ The comparison of ResNet-18 across CIFAR-10 and CIFAR-100 provides the clearest 
         CIFAR-100 & $0.72 \pm 0.00$ & Drifts $0.84 \to 0.72$ & $6.1 \pm 0.2$ & $60.6 \pm 0.1\%$  & $39.3 \pm 0.1\%$ \\
         \bottomrule
     \end{tabular}
-\end{table}
+\end{table*}
 
-\begin{figure}[t]
+\begin{figure*}[t]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -277,7 +287,7 @@ The comparison of ResNet-18 across CIFAR-10 and CIFAR-100 provides the clearest 
     \end{subfigure}
     \caption{Entropy curves on CIFAR-100 reveal distinct failure modes: overfitting (ResNet-18, leftward $p_c$ drift) versus underfitting (SimpleCNN, anomalously high $p_c$).}
     \label{fig:entropy_cifar100}
-\end{figure}
+\end{figure*}
 
 The shift from CIFAR-10 to CIFAR-100 produces three simultaneous effects: (1) $p_c$ drops by 0.12 and becomes unstable, (2) $\chi_{\max}$ decreases from $7.2 \pm 0.3$ to $6.1 \pm 0.2$, and (3) the generalization gap increases by a factor of ${\sim}5\times$ (from $8.0\%$ to $39.3\%$). Crucially, all three effects are reproduced across both seeds with low variance, confirming that these are structural properties of the model--task interaction rather than stochastic artifacts. This demonstrates that the phase transition is not a property of the architecture alone---it reflects the \emph{interaction} between model capacity and task complexity. On a well-matched task, the model settles into a stable critical point; on a task that exceeds its generalization capacity, the critical point erodes as memorization displaces genuine feature learning.
 
